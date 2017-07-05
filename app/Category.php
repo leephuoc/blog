@@ -22,10 +22,32 @@ class Category extends Model
      */
     public function get_list($params = [])
     {
-        if(isset($params['take'])) {
-            $this->limit($params['take']);
+
+        $self = $this;
+        if(!empty($params['where']) && is_array($params['where'])) {
+            $self = $self->where($params['where']);
         }
 
-        return $this->get()->toArray();
+        if(isset($params['offset'])) {
+            $self = $self->offset($params['offset']);
+        }
+
+        // Limit record
+        if(isset($params['limit'])) {
+            $self = $self->limit($params['limit']);
+        }
+
+        // Search key
+        if(isset($params['search'])) {
+
+        }
+
+        // Return
+        return $self->paginate(5);
+    }
+
+    public function get_detail($params = [])
+    {
+
     }
 }

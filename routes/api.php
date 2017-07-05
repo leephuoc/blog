@@ -14,5 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+    dd('abc');
     return $request->user();
 });
+
+    Route::GET('/category', 'api\Category_api@get_list');

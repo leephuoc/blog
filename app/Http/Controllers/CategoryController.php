@@ -38,13 +38,11 @@ class CategoryController extends Controller
         $params = !empty($request->all()) ? $request->all() : [];
 
         $category = new Category();
-
-        dd($category->get_list(['take' => 1]));
         
         /** @var array $res_categories Get list  data Category table */
-        $view_data['res_categories'] = $category->get_list($params);
+        $view_data['categories'] = $category->get_list($params)->toArray();
 
-        dd($view_data);
+        dd($view_data['categories']);
         
         // Init page web
         $view_data['name_page'] = 'Category';
@@ -84,5 +82,10 @@ class CategoryController extends Controller
             
             redirect('/admin/category');
         }
+    }
+    
+    public function demo()
+    {
+        dd($this->_api('category'));
     }
 }

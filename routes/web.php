@@ -35,10 +35,17 @@ Route::prefix('admin')->group(function() {
     Route::post('/category', 'CategoryController@index');
     Route::get('/category/create', 'CategoryController@create');
     Route::post('/category/store', 'CategoryController@store');
+
+    Route::get('category/demo', 'CategoryController@demo');
 });
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Auth::routes();
+
+
+//Route::prefix('/api')->group(function() {
+//    Route::GET('/category', 'api\Category_api@get_list');
+////   Route::POST('/category', 'api\Category_api@get_list');
+//});
